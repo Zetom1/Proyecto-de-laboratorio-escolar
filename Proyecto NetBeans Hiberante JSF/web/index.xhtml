@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Graficador</title>
+        <link real="stylesheet" href="/resources/css/main.css" type="text/css" media="screen, projection" />
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.17.0/math.min.js"></script>
+
+        <!-- load http://maurizzzio.github.io/function-plot/ -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script src="https://wzrd.in/standalone/function-plot@1.14.0"></script>
+
+        <style>
+            input[type=text] {
+                width: 600px;
+            }
+            input {
+                padding: 6px;
+            }
+            body, html, input {
+                font-family: sans-serif;
+                font-size: 11pt;
+
+            }
+            form {
+                margin: 20px 0;
+            }
+            input.textr.aum{
+                width: 20px;
+            }
+        </style>
+        <script type="text/javascript" src="funciones.js" /> <!--funciones.js es donde esta 
+                                                             el codigo de javascript para no hacer tanto desmadre
+                                                             en esta página-->
+        <script>
+        function guarda()
+        {
+        document.getElementById("eq3").value = document.getElementById("eq").value;
+        }
+        </script>
+        <script>
+            function Coseno() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("cos")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("cos")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function Seno() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("sin")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("sin")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function Tan() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("tan")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("tan")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function Exponencial() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("e^")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("e^")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function Log() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("log")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("log")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function x4() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("x^4")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("x^4")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function x3() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("x^3")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("x^3")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function x2() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("x^2")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("x^2")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function x() {
+                document.getElementById("eq").value = "#{schemManagedBean.Cadenarand("x")}";//Funcion variable
+                document.getElementById("eq2").value = "#{schemManagedBean.Cadenarand("x")}";//Funcion estatica
+                document.getElementById("dibu").click();
+            }
+            function eval() {
+                var eq1 = document.getElementById("eq").value.toString();
+                var eq2 = document.getElementById("eq2").value.toString();
+                if (eq1 === eq2) {
+                    alert("Expresiones iguales :D !");
+                } else {
+                    alert("Expresiones diferentes :'( !");
+                }
+            }
+            function regresa() {
+                //var eq1 = document.getElementById("eq").value.toString();
+                document.getElementById("eq").value = document.getElementById("eq3").value;
+            }
+        </script>
+    </h:head>
+    <h:body>
+
+        <h:form id="form">
+            <label for="eq">Ejercicio: #{schemManagedBean.nombre}</label>
+            <br/>
+            <input type="text" id="eq" value="#{schemManagedBean.Cadenarand(schemManagedBean.cadena)}" hidden="true"/>
+            <input type="text" id="eq3" hidden="true"/>
+            <input type="text" id="eq2" value="#{schemManagedBean.cadena}" hidden="true"/>
+            <input id="dibu" type="submit" value="Comenzar" onclick="Aumentar();"/> <!-- le agrege el id de dibu para agregarle 
+            evento de js de click(), Aumentar es el metodo que uso en funciones.js-->
+            <input type="button" value="Comparar" onclick="eval();"/>
+            <!--botones-->
+            <br/>
+            <br/>
+            <label>Tipos de graficas:</label>
+            <br/>
+            <!--<input type="button" value="Salvar Avance" onclick="guarda();"/>-->
+            <!--<input type="button" value="Ultimo punto salvado" onclick="regresa();Aumentar();"/>-->
+            <input type="button" value="Coseno" onclick="Coseno();"/>
+            <input type="button" value="Seno" onclick="Seno();"/>
+            <input type="button" value="Tangente" onclick="Tan();"/>
+            <input type="button" value="Logaritmo" onclick="Log();"/>
+            <input type="button" value="Exponencial" onclick="Exponencial();"/>
+            <input type="button" value="x^4" onclick="x4();"/>
+            <input type="button" value="x^3" onclick="x3();"/>
+            <input type="button" value="x^2" onclick="x2();"/>
+            <input type="button" value="x" onclick="x();"/>
+            <br/>
+            <br/>    
+        </h:form>
+        <br/>
+        <label style="color:red">------Ejercicio-------</label>
+        <br/>
+        <label style="color:blue">------Tu Grafica------</label>
+        <br/>
+        <div id="plot"></div>
+
+        <div id="funciones"></div>
+
+        <script>
+            function draw() {
+                try {
+                    functionPlot({
+                        target: '#plot',
+                        data: [{
+                                fn: document.getElementById('eq').value,
+                                sampler: 'builtIn', // this will make function-plot use the evaluator of math.js
+                                graphType: 'polyline'
+                            }, {
+                                fn: document.getElementById('eq2').value,
+                                sampler: 'builtIn', // this will make function-plot use the evaluator of math.js
+                                graphType: 'polyline'
+                            }]
+                    });
+                } catch (err) {
+                    console.log(err);
+                    alert(err);
+                }
+            }
+
+            document.getElementById('form').onsubmit = function (event) {
+                event.preventDefault();
+                draw();
+            };
+
+            draw();
+        </script>
+        
+        <h:form>
+        <h:commandLink value="Regresar" action="#{schemManagedBean.SalidaSchem()}" />
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+    <h:outputStylesheet library="css" name="table-style.css"  />      
+    <title>Tabla Grupos</title>  
+    </h:head>
+    <h:body>
+        <h1>Anadir, borrar y modificar</h1>
+        <h3><a href="addGroup.xhtml">Anadir</a></h3><!--redirige a addGroup.xhtml-->
+        <a href="MAdmin.xhtml">Pagina principal</a>
+        <h2></h2>
+        <!--carga los valores y crea la tabla donde se usaran -->
+        <h:dataTable value="#{adminGroupManagedBean.lista}" var="o"
+            styleClass="order-table"
+            headerClass="order-table-header"
+            rowClasses="order-table-odd-row,order-table-even-row"
+        >
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Nombre</f:facet>
+                <!-- dato -->
+                #{o.nombre}
+            </h:column>
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Eliminar Grupo</f:facet>
+                <!-- dato -->
+                <h:form>
+                    <h:commandLink value="Eliminar" action="#{adminGroupManagedBean.DeleteGroup(o.nombre)}" />
+                </h:form>
+            </h:column>
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Agregar Estudiante</f:facet>
+                <!-- dato -->
+                <h:form>
+                    <h:commandLink value="Agregar" action="#{adminGroupManagedBean.SaveIdModifyGroup(o.nombre)}" />
+                </h:form>
+            </h:column>
+    	</h:dataTable>   
+    </h:body>   
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+    <h:outputStylesheet library="css" name="table-style.css"  />   
+    <title>Tabla esquemas</title>
+    </h:head>
+    <h:body>
+        <h1>Anadir, borrar y modificar esquemas</h1>
+        <h3><a href="addSchem.xhtml">Anadir</a></h3><!--redirige a addSchem.xhtml-->
+        <a href="MProf.xhtml">Pagina principal</a>
+        <h2></h2>
+        <!--carga los valores y crea la tabla donde se usaran -->
+        <h:dataTable value="#{profManagedBean.lista}" var="o"
+            styleClass="order-table"
+            headerClass="order-table-header"
+            rowClasses="order-table-odd-row,order-table-even-row"
+        >
+            
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Nombre</f:facet>
+                <!-- dato -->
+                #{o.nombre}
+            </h:column>
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Expresion Matematica</f:facet>
+                <!-- dato -->
+                #{o.cadena}
+            </h:column>
+ 
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Elminar Esquema</f:facet>
+                <!-- dato -->
+                <h:form>
+                    <h:commandLink value="Eliminar" action="#{profManagedBean.DeleteSchem(o.nombre)}" />
+                </h:form>
+            </h:column>
+            
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Modificar Esquema</f:facet>
+                <!-- dato -->
+                <h:form>
+                    <h:commandLink value="Modificar" action="#{profManagedBean.SaveIdModifySchem(o.nombre,o.cadena)}" />
+                </h:form>
+            </h:column>
+            
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Agregar Esquema</f:facet>
+                <!-- dato -->
+                <h:form>
+                    <h:commandLink value="Agregar" action="#{profManagedBean.SaveIdAddGroup(o.nombre)}" />
+                </h:form>
+            </h:column>
+            
+            <h:column>
+                <!-- cabecera -->
+                <f:facet name="header">Ver Esquema</f:facet>
+                <!-- dato -->
+                <h:form>
+                    <h:commandLink value="Ver" action="#{schemManagedBean.SeeSchem(o.nombre,o.cadena)}" />
+                </h:form>
+            </h:column>
+    	</h:dataTable>   
+    </h:body>   
+</html>

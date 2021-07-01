@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Esquema a grupo</title>
+    </h:head>
+    <h:body >
+        <h1>Agregar Esquema al grupo</h1>
+         <!--Formulario para las acciones-->
+        <h:form >            
+            Esquema actual #{profManagedBean.nombre}
+                <br/>
+                Nombre del grupo <!--pide nombre-->
+                <h:inputText pt:placeholder="Nombre" value="#{adminGroupManagedBean.nombre}" />
+                <br/>
+                <h:messages></h:messages>
+                <h:commandButton value="Anadir" action="#{profManagedBean.AddSchemToG(profManagedBean.nombre,adminGroupManagedBean.nombre)}" />
+        </h:form>
+        <a href="MProf.xhtml">Pagina principal</a>s
+    </h:body>       
+</html>
